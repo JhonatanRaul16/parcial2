@@ -7,6 +7,8 @@ import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import Private from "./Routes/Private";
+import Public from "./Routes/Public";
 function App() {
   const Layout= () =>{
     return(
@@ -24,13 +26,23 @@ function App() {
       children:[
         {
           path:"/",
-          element:<Home/>
+          element:<Private><Home/></Private>
+        }
+      ]
+    },
+    {
+      path: "/",
+      element: <Layout/>,
+      children:[
+        {
+          path:"/asistencia",
+          element:<Private><Home/></Private>
         }
       ]
     },
     {
       path:"/login",
-      element:<Login/>
+      element:<Public><Login/></Public>
     }
   ])
   return (

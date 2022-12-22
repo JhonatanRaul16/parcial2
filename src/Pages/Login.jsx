@@ -1,36 +1,27 @@
-import React, { useState,useContext,useEffect } from 'react'
-import Fondo from '../images/descarga.jfif'
-import Logo from '../images/logo.png'
-import { Link, useNavigate} from 'react-router-dom'
-import axios from 'axios'
+import React, { useState,useEffect, useContext} from 'react';
+import Fondo from '../images/descarga.jfif';
+import Logo from '../images/logo.png';
+import {AuthContext} from '../Context/auth/authContext';
+import { useNavigate } from 'react-router';
+
 const Login = () => {
+    const navigate = useNavigate();
+    const {login} = useContext(AuthContext);
+
     const [inputs, setInputs] = useState({
         email:"",
         password:"",
         device_name:"web"
       });
-      const navigate = useNavigate();
-      console.log(inputs);
       const handleChange = e =>{
         setInputs(prev=>({...prev,[e.target.name]: e.target.value}))
       }
-      
-      const handleSubmit = async(e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            await 
-            axios.post("http://127.0.0.1:8000/api/auth/login",inputs).then(({ data }) => {
-                if(data.status==="success"){
-                  console.log(data)
-                } else {
-                  console.log("error")
-                }
-              });
-            navigate("/")
-        } catch (error) {
-            console.log(error);
-        }
-      }
+        login(inputs);
+        navigate("/");
+      } 
+
   return (
     <div className='h-screen w-full flex'>
         <div className='w-2/5'>
