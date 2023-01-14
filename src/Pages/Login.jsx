@@ -1,11 +1,10 @@
 import React, { useState,useEffect, useContext} from 'react';
-import Fondo from '../images/descarga.jfif';
 import Logo from '../images/logo.png';
 import {AuthContext} from '../Context/auth/authContext';
 import { useNavigate } from 'react-router';
-import { Box, Button, Grid, Link, Paper, TextField, Typography } from '@mui/material';
-import { width } from '@mui/system';
-
+import { Avatar, Box, Button,  Grid, Link,  Paper, TextField, Typography } from '@mui/material';
+import Lottie from "lottie-react";
+import Uno from "../assets/uno.json"
 const Login = () => {
     const navigate = useNavigate();
     const {login} = useContext(AuthContext);
@@ -25,10 +24,9 @@ const Login = () => {
       } 
 
   return (
-    <div className='h-screen w-full flex'>
+    <div>
         <Grid
         container
-        spacing={2}
         sx={{ height: '100vh', backgroundColor: { xs: '#fff', md: '#f4f4f4' } }}
         >
             <Grid 
@@ -36,45 +34,9 @@ const Login = () => {
             xs={false}
             sm={4}
             md={7}
-            sx={{
-                background: 'linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3)), url(https://d500.epimg.net/cincodias/imagenes/2021/09/01/autonomos/1630526591_733817_1630910738_noticia_normal.jpg)',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-            }}
+            sx={{height:'100vh'}}
             >
-                <Box
-                sx={{
-                    display:'flex',
-                    width:'100%',
-                    height:'100%',
-                    alignItems:'center',
-                    justifyContent:'center'
-                }}>
-                <Box
-                sx={{
-                    display:'flex',
-                    alignItems:'center',
-                    justifyContent:'center',
-                    flexDirection:'column'
-                }}>
-                    <img src={Logo} alt="" />
-                    <Typography 
-                    color="white" 
-                    fontWeight="bold" 
-                    variant='h2'>
-                        Asistencia FIS
-                    </Typography>
-                    <Typography
-                    variant='p'
-                    color="white"
-                    textAlign="center"
-                    fontWeight="bold">
-                     El sistema para control de docentes para <br />
-                     la FIS
-                    </Typography>
-                </Box>
-                </Box>
+                <Lottie animationData={Uno} style={{height:'100%'}}></Lottie>
             </Grid>
             <Grid 
             item 
@@ -88,12 +50,15 @@ const Login = () => {
             <Box
             sx={{
                 my:8,
-                mx:4,
+                mx:10,
                 display:'flex',
                 gap:'20px',
                 flexDirection:'column',
                 alignItems:'center'
             }}>
+                <Avatar sx={{ m: 1 }} variant="rounded">
+                    <img src={Logo} alt="" />
+                </Avatar>
                 <Typography 
                 component="h1" 
                 variant='h5'
@@ -112,15 +77,15 @@ const Login = () => {
                     autoFocus
                     required
                 />
+                
                 <TextField
                     id="outlined-password-input"
                     label="Contraseña"
                     fullWidth
                     type="password"
-                    name='password'
+                    
                     autoComplete="current-password"
                     onChange={handleChange}
-                    autoFocus
                     required
                  />
                  <Button
