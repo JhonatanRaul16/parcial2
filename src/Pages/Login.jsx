@@ -56,9 +56,9 @@ const Login = () => {
                 flexDirection:'column',
                 alignItems:'center'
             }}>
-                <Avatar sx={{ m: 1 }} variant="rounded">
+                <Box sx={{width:'80px'}}>
                     <img src={Logo} alt="" />
-                </Avatar>
+                </Box>
                 <Typography 
                 component="h1" 
                 variant='h5'
