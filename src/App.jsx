@@ -9,6 +9,7 @@ import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import Private from "./Routes/Private";
 import Public from "./Routes/Public";
+import Register from "./Pages/Register";
 function App() {
   const Layout= () =>{
     return(
@@ -43,6 +44,10 @@ function App() {
     {
       path:"/login",
       element:<Public><Login/></Public>
+    },
+    {
+      path:"/register",
+      element:<Public><Register/></Public>
     }
   ])
   return (

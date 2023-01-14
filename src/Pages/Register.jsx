@@ -2,10 +2,10 @@ import React, { useState,useEffect, useContext} from 'react';
 import Logo from '../images/logo.png';
 import {AuthContext} from '../Context/auth/authContext';
 import { useNavigate } from 'react-router';
-import { Avatar, Box, Button,  Grid, Link,  Paper, TextField, Typography } from '@mui/material';
+import {  Box, Button,  Grid, Link,  Paper, TextField, Typography } from '@mui/material';
 import Lottie from "lottie-react";
-import Uno from "../assets/uno.json"
-const Login = () => {
+import Reg from "../assets/reg.json"
+const Register = () => {
     const navigate = useNavigate();
     const {login} = useContext(AuthContext);
 
@@ -36,7 +36,7 @@ const Login = () => {
             md={7}
             sx={{height:'100vh'}}
             >
-                <Lottie animationData={Uno} style={{height:'100%'}}></Lottie>
+                <Lottie animationData={Reg} style={{height:'100%'}}></Lottie>
             </Grid>
             <Grid 
             item 
@@ -65,7 +65,7 @@ const Login = () => {
                 color="blue" 
                 fontWeight="bold"
                 >
-                    INICIAR SESIÓN
+                    Registro de Usuario
                 </Typography>
                  <TextField 
                     id="outlined-basic" 
@@ -94,7 +94,7 @@ const Login = () => {
                     onClick={handleSubmit}
                     sx={{ mt: 3, mb: 2 }}
                  >
-                    Ingresar
+                    Registrar
                  </Button>
                  <Grid 
                   container
@@ -109,8 +109,8 @@ const Login = () => {
                     <Grid item xs sx={{
                         textAlign:'center'
                     }}>
-                        <Link href='/register' variant='body2'>
-                            Registrase
+                        <Link href='/login' variant='body2'>
+                            Entrar
                         </Link>
                     </Grid>
                  </Grid>
@@ -121,4 +121,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
