@@ -3,16 +3,18 @@ import Fondo from '../images/descarga.jfif';
 import Logo from '../images/logo.png';
 import {AuthContext} from '../Context/auth/authContext';
 import { useNavigate } from 'react-router';
+import { Box, Button, Grid, Link, Paper, TextField, Typography } from '@mui/material';
+import { width } from '@mui/system';
 
 const Login = () => {
     const navigate = useNavigate();
     const {login} = useContext(AuthContext);
 
     const [inputs, setInputs] = useState({
-        email:"",
+        username:"",
         password:"",
-        device_name:"web"
       });
+
       const handleChange = e =>{
         setInputs(prev=>({...prev,[e.target.name]: e.target.value}))
       }
@@ -24,44 +26,132 @@ const Login = () => {
 
   return (
     <div className='h-screen w-full flex'>
-        <div className='w-2/5'>
-            <div className='px-8'>
-            <p className='text-center mt-8 font-bold text-2xl text-blue-500'>INICIAR SESIÓN</p>
-            <form className='mt-8'>
-                <div className="mb-6 w-full flex items-center justify-center">
-                    <input 
-                    type="text" 
-                    name='email' 
-                    className="bg-gray-50 w-2/3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-                    placeholder="Correo electronico"
-                    onChange={handleChange} 
-                    required/>
-                </div>
-                <div className="mb-6 w-full flex items-center justify-center">
-                    <input 
-                    type="password" 
-                    name='password' 
-                    className="bg-gray-50 w-2/3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" 
-                    placeholder='Contraseña'
-                    onChange={handleChange}
-                    required/>
-                </div>
-                <div className='w-full flex  items-center justify-center'>
-                    <button onClick={handleSubmit}  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center">Ingresar</button>  
-                </div>     
-            </form>
-            </div>
-        </div>
-        <div className='w-3/5'>
-            <div className='w-full h-full relative'>
-                <img src={Fondo} className='w-full h-full' alt="" />
-                <div className='absolute top-32  flex flex-col'>
+        <Grid
+        container
+        spacing={2}
+        sx={{ height: '100vh', backgroundColor: { xs: '#fff', md: '#f4f4f4' } }}
+        >
+            <Grid 
+            item
+            xs={false}
+            sm={4}
+            md={7}
+            sx={{
+                background: 'linear-gradient(0deg, rgba(255, 0, 150, 0.3), rgba(255, 0, 150, 0.3)), url(https://d500.epimg.net/cincodias/imagenes/2021/09/01/autonomos/1630526591_733817_1630910738_noticia_normal.jpg)',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
+            >
+                <Box
+                sx={{
+                    display:'flex',
+                    width:'100%',
+                    height:'100%',
+                    alignItems:'center',
+                    justifyContent:'center'
+                }}>
+                <Box
+                sx={{
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    flexDirection:'column'
+                }}>
                     <img src={Logo} alt="" />
-                    <p className='text-center text-white'>ASISTENCIA FIS</p>
-                    <p className='text-center text-white'>Sistema para el control de asistencia para <br />la FIS</p>
-                </div>
-            </div>
-        </div>
+                    <Typography 
+                    color="white" 
+                    fontWeight="bold" 
+                    variant='h2'>
+                        Asistencia FIS
+                    </Typography>
+                    <Typography
+                    variant='p'
+                    color="white"
+                    textAlign="center"
+                    fontWeight="bold">
+                     El sistema para control de docentes para <br />
+                     la FIS
+                    </Typography>
+                </Box>
+                </Box>
+            </Grid>
+            <Grid 
+            item 
+            xs={12}
+            sm={8}
+            md={5}
+            component={Paper}
+            elevation={6}
+            square
+            >
+            <Box
+            sx={{
+                my:8,
+                mx:4,
+                display:'flex',
+                gap:'20px',
+                flexDirection:'column',
+                alignItems:'center'
+            }}>
+                <Typography 
+                component="h1" 
+                variant='h5'
+                color="blue" 
+                fontWeight="bold"
+                >
+                    INICIAR SESIÓN
+                </Typography>
+                 <TextField 
+                    id="outlined-basic" 
+                    label="Usuario"
+                    fullWidth
+                    name="username"
+                    variant="outlined"
+                    onChange={handleChange}
+                    autoFocus
+                    required
+                />
+                <TextField
+                    id="outlined-password-input"
+                    label="Contraseña"
+                    fullWidth
+                    type="password"
+                    name='password'
+                    autoComplete="current-password"
+                    onChange={handleChange}
+                    autoFocus
+                    required
+                 />
+                 <Button
+                    fullWidth
+                    variant="contained"
+                    onClick={handleSubmit}
+                    sx={{ mt: 3, mb: 2 }}
+                 >
+                    Ingresar
+                 </Button>
+                 <Grid 
+                  container
+                  spacing={2}>
+                    <Grid item xs sx={{
+                        textAlign:'center'
+                    }} >
+                        <Link href='' variant='body2'>
+                         Olvido su contraseña
+                        </Link>
+                    </Grid>
+                    <Grid item xs sx={{
+                        textAlign:'center'
+                    }}>
+                        <Link href='' variant='body2'>
+                            Registrase
+                        </Link>
+                    </Grid>
+                 </Grid>
+            </Box>
+            </Grid>
+        </Grid>
     </div>
   )
 }

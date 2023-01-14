@@ -13,8 +13,8 @@ export const AuthContextProvider =({children}) =>{
     const [auth, dispatch] = useReducer(AuthReducer,InitialAuth);
     const login = async(inputs) => {
        try {
-         const {data} = await  axios.post("http://127.0.0.1:8000/api/auth/login",inputs);
-         localStorage.setItem("token", data.token);
+         const {data} = await  axios.post("http://localhost:8080/api/auth/signin",inputs);
+         console.log(data);
          dispatch({
             type: Types.login,
             payload: data.user
