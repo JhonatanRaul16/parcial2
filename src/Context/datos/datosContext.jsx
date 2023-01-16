@@ -7,20 +7,22 @@ export const DatosContextProvider =({children}) =>{
 
 
     const InitialState = {
-        cursos:[],
+        docentes:[],
         edit:null
     }
     const [datos,dispatch] = useReducer(DatosReducer, InitialState)
-    const listarCursos = async()=>{
+    const listarDocentes= async()=>{
         try {
-            const token=localStorage.getItem('token');
+            const token = JSON.parse(localStorage.getItem('token'));
+            const access = token.accessToken;
             const instance = axios.create({
-                baseURL:'http://127.0.0.1:8000',
-                headers: {'Authorization': 'Bearer '+ token}
+                baseURL:'http://localhost:8080/api',
+                headers: {'Authorization': 'Bearer '+ access}
               })
-            const {data}=await instance.get('/api/cursos');
+            const {data} = await instance.get('/docentes');
+            
             dispatch({
-                type:Types.listaCursos,
+                type:Types.listaDocentes,
                 payload:data
             })
         } catch (error) {
@@ -82,14 +84,14 @@ export const DatosContextProvider =({children}) =>{
         }
     }
     useEffect(()=>{
-        listarCursos()
+        listarDocentes()
     },[]);
      return (
         <DatosContext.Provider 
         value={{
-            cursos:datos.cursos,
+            docentes:datos.docentes,
             edit:datos.edit,
-            listarCursos,
+            listarDocentes,
             eliminarCursos,
             actualizarCursos,
             editCursos,

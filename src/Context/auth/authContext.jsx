@@ -4,7 +4,7 @@ import { Types } from "../../Types/Types";
 import { AuthReducer } from "./authReducer";
 export const AuthContext = createContext();
 export const AuthContextProvider =({children}) =>{
-
+    const API_URL = "http://localhost:8080/api/auth/";
     const InitialAuth = {
       token: localStorage.getItem('token'),
       isLogin: false,
@@ -13,8 +13,10 @@ export const AuthContextProvider =({children}) =>{
     const [auth, dispatch] = useReducer(AuthReducer,InitialAuth);
     const login = async(inputs) => {
        try {
-         const {data} = await  axios.post("http://localhost:8080/api/auth/signin",inputs);
+         const {data} = await  axios.post(API_URL+"signin",inputs);
          console.log(data);
+         localStorage.setItem("token",JSON.stringify(data))
+        
          dispatch({
             type: Types.login,
             payload: data.user
@@ -26,12 +28,13 @@ export const AuthContextProvider =({children}) =>{
 
     const logout = async() => {
         try {
-         const token = localStorage.getItem('token');
+         const token = JSON.parse(localStorage.getItem('token'));
+         const access = token.accessToken;
          const instance = axios.create({
-            baseURL:'http://127.0.0.1:8000',
-            headers: {'Authorization': 'Bearer '+ token}
+            baseURL: API_URL,
+            headers: {'Authorization': 'Bearer '+ access}
           })
-         const {data} = await instance.post("/api/logout")
+         const {data} = await instance.post("signout")
          localStorage.clear()
          dispatch({
             type: Types.logout,
@@ -43,13 +46,15 @@ export const AuthContextProvider =({children}) =>{
 
      const refresh = async()=> {
       try {
-         const token = localStorage.getItem('token');
-         const instance = axios.create({
-            baseURL:'http://127.0.0.1:8000',
-            headers: {'Authorization': 'Bearer '+ token}
-          })
-          const {data} = await instance.get("/api/refresh_user")
-          dispatch({
+         let token = JSON.parse(localStorage.getItem('token'));
+         const refresh = token.refreshToken;
+
+         const {data} = await axios.post(API_URL + "refreshtoken",{
+            "refreshToken":`${refresh}`
+         })
+        /*  token.accessToken = data.accessToken;
+         localStorage.setItem('token', JSON.stringify(token)); */
+         dispatch({
             type: Types.login,
             payload: data.user
           })

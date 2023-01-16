@@ -13,7 +13,7 @@ const Login = () => {
         username:"",
         password:"",
       });
-
+      console.log(inputs);
       const handleChange = e =>{
         setInputs(prev=>({...prev,[e.target.name]: e.target.value}))
       }
@@ -83,7 +83,7 @@ const Login = () => {
                     label="Contraseña"
                     fullWidth
                     type="password"
-                    
+                    name='password'
                     autoComplete="current-password"
                     onChange={handleChange}
                     required

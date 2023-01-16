@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Tables from '../Components/Tables'
 import Form from '../Components/Form'
 import Logo from '../images/logo.png'
 import ListItem from '../Components/ListItem'
 import { AppBar, Button, Divider, Grid, IconButton, Paper, Toolbar, Typography } from '@mui/material'
-import { borderRadius, Box } from '@mui/system'
-import Navbar from '../Components/Navbar'
+import {  Box } from '@mui/system'
+import { AuthContext } from '../Context/auth/authContext'
+import { DatosContext } from '../Context/datos/datosContext'
+import { Link } from 'react-router-dom'
 const Home = () => {
+  const {logout} = useContext(AuthContext);
   
   return (
     <div className='w-full flex'>
@@ -49,7 +52,11 @@ const Home = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                       Dashboard
                     </Typography>
-                    <Button color="inherit">Salir</Button>
+                    <Button color="inherit">
+                      <Link onClick={logout} to='/login'>
+                       Salir
+                      </Link>
+                    </Button>
                   </Toolbar>
                 </AppBar>
               </Box>

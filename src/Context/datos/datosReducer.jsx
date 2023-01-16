@@ -1,10 +1,10 @@
 import { Types } from "../../Types/Types";
 export const DatosReducer = (state,action)=>{
     switch(action.type){
-        case Types.listaCursos:
+        case Types.listaDocentes:
             return{
                 ...state,
-                cursos:action.payload,
+                docentes:action.payload,
             }
         case Types.edit:
             return{
