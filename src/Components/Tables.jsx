@@ -9,7 +9,7 @@ import Form from './Form';
   
 const Tables = () => {
     /* const {cursos,eliminarDocentes,editCursos} = useContext(DatosContext); */
-    const {docentes,eliminarDocentes} = useContext(DatosContext);
+    const {docentes,eliminarDocentes,showDocentes} = useContext(DatosContext);
   return (
     <>
     <Title>Lista de docentes</Title>
@@ -36,11 +36,11 @@ const Tables = () => {
               <TableCell>{row.telefono}</TableCell>
               <TableCell>{row.dni}</TableCell>
               <TableCell sx={{display:'flex',gap:"5px"}}>
-                <IconButton aria-label='ver' color='primary'>
+                <IconButton aria-label='ver' color='primary' onClick={()=>showDocentes(row.id)}>
                     <VisibilityIcon />
                 </IconButton>
                 <IconButton aria-label='editar' color='success' >
-                    <Form>
+                    <Form editar={"Editar Docente"}>
                      <EditIcon/>
                     </Form>
                 </IconButton>

@@ -63,7 +63,7 @@ const Home = () => {
               </Box>
               
             </Grid>
-            <Box sx={{padding:'20px', backgroundColor:'rgb(241,245,249)',width:'100%'}}>
+            <Box sx={{padding:'20px',width:'100%'}}>
               <Grid
                 item
                 xs={12}>
@@ -87,7 +87,7 @@ const Home = () => {
                 item
                 xs={8}
                 >
-                <Paper sx={{p:2,overflowX:'scroll'}} >
+                <Paper sx={{p:2,overflowX:'hidden'}} >
                 <Tables/>
                 </Paper>
               </Grid>

@@ -58,14 +58,15 @@ export const DatosContextProvider =({children}) =>{
         }
     }
 
-    const editCursos=async(id)=>{
+    const showDocentes=async(id)=>{
         try {
-            const token = localStorage.getItem("token");
+            const token = JSON.parse(localStorage.getItem('token'));
+            const access = token.accessToken;
             const instance = axios.create({
-                baseURL:'http://127.0.0.1:8000',
-                headers: {'Authorization': 'Bearer '+ token}
+                baseURL:'http://localhost:8080/api',
+                headers: {'Authorization': 'Bearer '+ access}
               })
-            const {data}=await instance.get(`/api/cursos/${id}`);
+            const {data}=await instance.get(`/docentes/${id}`);
             dispatch({
                 type: Types.edit,
                 payload:data
@@ -97,7 +98,7 @@ export const DatosContextProvider =({children}) =>{
             listarDocentes,
             eliminarDocentes,
             actualizarCursos,
-            editCursos,
+            showDocentes,
             crearDocente
         }} >
             {children}
