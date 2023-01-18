@@ -16,7 +16,7 @@ const style = {
     };
     
 const FormCreate = ({children}) => {
-    const {crearDocente} = useContext(DatosContext);
+    const {crearDocente,borrarData} = useContext(DatosContext);
     const [inputs, setInputs] = useState({
         nombre: "",
         apellido: "",
@@ -30,6 +30,7 @@ const FormCreate = ({children}) => {
         e.preventDefault();
         crearDocente(inputs);
         handleClose();
+        borrarData();
     }
     const [open,setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -56,7 +57,7 @@ const FormCreate = ({children}) => {
             marginBottom:'15px'
         }}>
             <Title>
-             Crear Docente
+            Nuevo Docente
             </Title>
             <IconButton
             onClick={handleClose}

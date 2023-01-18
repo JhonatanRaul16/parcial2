@@ -39,6 +39,7 @@ const Form = ({children}) => {
         e.preventDefault();
         actualizarDocentes(inputs,edit.id);
         handleClose();
+        borrarData();
        }
     const [open,setOpen] = useState(false);
     const handleOpen = () => setOpen(true);

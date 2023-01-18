@@ -39,6 +39,7 @@ export const DatosContextProvider =({children}) =>{
               })
             const {data}=await instance.delete(`/docentes/${id}`);
             listarDocentes();
+            borrarData();
         } catch (error) {
             console.log(error)
         }
@@ -90,7 +91,10 @@ export const DatosContextProvider =({children}) =>{
         }
     }
     const borrarData = () =>{
-        
+        dispatch({
+            type: Types.edit,
+            payload:null
+        })
     }
     useEffect(()=>{
         listarDocentes()
