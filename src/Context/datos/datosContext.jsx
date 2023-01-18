@@ -29,32 +29,35 @@ export const DatosContextProvider =({children}) =>{
             console.log(error);
         }
     }
-    const eliminarCursos =async(id)=>{
+    const eliminarDocentes =async(id)=>{
         try {
-            const token = localStorage.getItem("token");
+            const token = JSON.parse(localStorage.getItem('token'));
+            const access = token.accessToken;
             const instance = axios.create({
-                baseURL:'http://127.0.0.1:8000',
-                headers: {'Authorization': 'Bearer '+ token}
+                baseURL:'http://localhost:8080/api',
+                headers: {'Authorization': 'Bearer '+ access}
               })
-            const {data}=await instance.delete(`/api/cursos/${id}`);
-            listarCursos();
+            const {data}=await instance.delete(`/docentes/${id}`);
+            listarDocentes();
         } catch (error) {
             console.log(error)
         }
     }
-    const crearCurso = async(inputs)=>{
+    const crearDocente= async(inputs)=>{
         try {
-            const token = localStorage.getItem("token");
+            const token = JSON.parse(localStorage.getItem('token'));
+            const access = token.accessToken;
             const instance = axios.create({
-                baseURL:'http://127.0.0.1:8000',
-                headers: {'Authorization': 'Bearer '+ token}
+                baseURL:'http://localhost:8080/api',
+                headers: {'Authorization': 'Bearer '+ access}
               })
-            const {data}=await instance.post('/api/cursos',inputs);
-            listarCursos();
+            const {data}=await instance.post('/docentes',inputs);
+            listarDocentes();
         } catch (error) {
             console.log(error);
         }
     }
+
     const editCursos=async(id)=>{
         try {
             const token = localStorage.getItem("token");
@@ -92,10 +95,10 @@ export const DatosContextProvider =({children}) =>{
             docentes:datos.docentes,
             edit:datos.edit,
             listarDocentes,
-            eliminarCursos,
+            eliminarDocentes,
             actualizarCursos,
             editCursos,
-            crearCurso
+            crearDocente
         }} >
             {children}
          </DatosContext.Provider>

@@ -14,9 +14,7 @@ export const AuthContextProvider =({children}) =>{
     const login = async(inputs) => {
        try {
          const {data} = await  axios.post(API_URL+"signin",inputs);
-         console.log(data);
          localStorage.setItem("token",JSON.stringify(data))
-        
          dispatch({
             type: Types.login,
             payload: data.user

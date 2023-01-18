@@ -8,7 +8,7 @@ import Uno from "../assets/uno.json"
 const Login = () => {
     const navigate = useNavigate();
     const {login} = useContext(AuthContext);
-
+    
     const [inputs, setInputs] = useState({
         username:"",
         password:"",

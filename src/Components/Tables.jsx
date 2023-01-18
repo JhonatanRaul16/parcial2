@@ -5,11 +5,11 @@ import Title from './Title';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-
+import Form from './Form';
   
 const Tables = () => {
-    /* const {cursos,eliminarCursos,editCursos} = useContext(DatosContext); */
-    const {docentes} = useContext(DatosContext);
+    /* const {cursos,eliminarDocentes,editCursos} = useContext(DatosContext); */
+    const {docentes,eliminarDocentes} = useContext(DatosContext);
   return (
     <>
     <Title>Lista de docentes</Title>
@@ -18,8 +18,8 @@ const Tables = () => {
             <TableRow>
                 <TableCell>Nombre</TableCell>
                 <TableCell>Apellido</TableCell>
-                <TableCell>Correo</TableCell>
-                <TableCell>telefono</TableCell>
+                <TableCell>Teléfono</TableCell>
+                <TableCell>Dni</TableCell>
                 <TableCell>Acción</TableCell>
             </TableRow>
             </TableHead>
@@ -40,9 +40,11 @@ const Tables = () => {
                     <VisibilityIcon />
                 </IconButton>
                 <IconButton aria-label='editar' color='success' >
-                    <EditIcon/>
+                    <Form>
+                     <EditIcon/>
+                    </Form>
                 </IconButton>
-                <IconButton aria-label='error' color='error'>
+                <IconButton aria-label='error' color='error' onClick={()=>eliminarDocentes(row.id)}>
                     <DeleteIcon/>
                 </IconButton>
               </TableCell>

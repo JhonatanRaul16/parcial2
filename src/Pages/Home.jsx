@@ -1,19 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext} from 'react'
 import Tables from '../Components/Tables'
-import Form from '../Components/Form'
 import Logo from '../images/logo.png'
 import ListItem from '../Components/ListItem'
-import { AppBar, Button, Divider, Grid, IconButton, Paper, Toolbar, Typography } from '@mui/material'
+import CardInfo from '../Components/CardInfo'
+import { AppBar, Button, Grid, Paper, Toolbar, Typography } from '@mui/material'
 import {  Box } from '@mui/system'
 import { AuthContext } from '../Context/auth/authContext'
-import { DatosContext } from '../Context/datos/datosContext'
 import { Link } from 'react-router-dom'
+import Form from '../Components/Form'
 const Home = () => {
   const {logout} = useContext(AuthContext);
   
   return (
     <div className='w-full flex'>
       <div className='flex flex-col h-screen w-1/5'>
+        
         <Box sx={{
           display:'flex',
           alignItems:'center',
@@ -62,14 +63,45 @@ const Home = () => {
               </Box>
               
             </Grid>
-            <Grid 
-            item
-            xs={10}>
-              <Paper sx={{p:2}} >
-               <Tables/>
-              </Paper>
-            </Grid>
+            <Box sx={{padding:'20px', backgroundColor:'rgb(241,245,249)',width:'100%'}}>
+              <Grid
+                item
+                xs={12}>
+                  <Form>
+                    <Button
+                    sx={{borderRadius:'10px',
+                        backgroundColor:'rgb(238,243,251)',
+                        marginBottom:'15px',
+                        fontWeight:'500'
+                        }}
+                    title="+ usuario">Nuevo usuario
+                    </Button>
+                  </Form> 
+              </Grid>
+              <Grid
+               container
+               xs={12}
+               spacing={3}
+               >
+                <Grid 
+                item
+                xs={8}
+                >
+                <Paper sx={{p:2,overflowX:'scroll'}} >
+                <Tables/>
+                </Paper>
+              </Grid>
+              <Grid
+              item
+              xs={4}>
+                <Paper>
+                    <CardInfo/>
+                </Paper>
+              </Grid>
+              </Grid>
+              </Box>
           </Grid>
+          
       </div>
     </div>
   )
