@@ -23,7 +23,7 @@ const Form = ({children}) => {
         telefono: "",
         dni: "",
       });
-     
+     console.log(inputs);
       const handleChange = e =>{
         setInputs(prev=>({...prev,[e.target.name]: e.target.value}))
       }
@@ -37,9 +37,9 @@ const Form = ({children}) => {
       },[edit])
       const handleSubmit = e =>{
         e.preventDefault();
-        actualizarDocentes(inputs);
+        actualizarDocentes(inputs,edit.id);
         handleClose();
-    }
+       }
     const [open,setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -85,19 +85,19 @@ const Form = ({children}) => {
                 }}>
                 <TextField 
                 id="outlined-basic"
+                onChange={handleChange}
                 name='nombre'
                 label="Nombre"
                 size="small"
-                onChange={handleChange}
                 variant="outlined"
-                value={edit?.nombre || ""}
+                value={inputs.nombre}
                 fullWidth
                 required
                 />
                 <TextField 
                 id="outlined-basic"
                 size="small"
-                value={edit?.apellido || ""}
+                value={inputs.apellido}
                 name='apellido'
                 label="Apellido" 
                 onChange={handleChange}
@@ -115,7 +115,7 @@ const Form = ({children}) => {
                 id="outlined-basic"
                 size="small"
                 label="Teléfono"
-                value={edit?.telefono || ""}
+                value={inputs.telefono}
                 name='telefono'
                 onChange={handleChange}
                 variant="outlined"
@@ -128,7 +128,7 @@ const Form = ({children}) => {
                 label="Dni"
                 onChange={handleChange}
                 name='dni'
-                value={edit?.dni || ""}
+                value={inputs.dni}
                 variant="outlined"
                 sx={{ width: '25ch' }}
                 required

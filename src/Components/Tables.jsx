@@ -38,11 +38,11 @@ const Tables = () => {
                 <IconButton aria-label='ver' color='primary' onClick={()=>showDocentes(row.id)}>
                     <VisibilityIcon />
                 </IconButton>
+                <Form>
                 <IconButton aria-label='editar' color='success' onClick={()=>showDocentes(row.id)} >
-                    <Form>
                      <EditIcon/>
-                    </Form>
                 </IconButton>
+                </Form>
                 <IconButton aria-label='error' color='error' onClick={()=>eliminarDocentes(row.id)}>
                     <DeleteIcon/>
                 </IconButton>

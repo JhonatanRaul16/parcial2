@@ -75,7 +75,7 @@ export const DatosContextProvider =({children}) =>{
             console.log(error);
         }
     }
-    const actualizarDocentes= async(id) =>{
+    const actualizarDocentes= async(inputs,id) =>{
         try {
             const token = JSON.parse(localStorage.getItem('token'));
             const access = token.accessToken;
@@ -83,7 +83,8 @@ export const DatosContextProvider =({children}) =>{
                 baseURL:'http://localhost:8080/api',
                 headers: {'Authorization': 'Bearer '+ access}
               })
-            const {data}=await instance.update(`/docentes/${id}`)
+            const {data}=await instance.put(`/docentes/${id}`,inputs)
+            listarDocentes();
         } catch (error) {
             console.log(error);
         }

@@ -13,7 +13,6 @@ const Login = () => {
         username:"",
         password:"",
       });
-      console.log(inputs);
       const handleChange = e =>{
         setInputs(prev=>({...prev,[e.target.name]: e.target.value}))
       }
