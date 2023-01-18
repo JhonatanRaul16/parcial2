@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Title from './Title';
 import { DatosContext } from '../Context/datos/datosContext'
 import ClearIcon from '@mui/icons-material/Clear';
+import Alerta from './Alerta';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -23,7 +24,6 @@ const Form = ({children}) => {
         telefono: "",
         dni: "",
       });
-     console.log(inputs);
       const handleChange = e =>{
         setInputs(prev=>({...prev,[e.target.name]: e.target.value}))
       }
@@ -40,6 +40,7 @@ const Form = ({children}) => {
         actualizarDocentes(inputs,edit.id);
         handleClose();
         borrarData();
+        <Alerta>Se actualizo Correctamente</Alerta>
        }
     const [open,setOpen] = useState(false);
     const handleOpen = () => setOpen(true);

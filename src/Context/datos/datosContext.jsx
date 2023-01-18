@@ -4,7 +4,7 @@ import { Types } from "../../Types/Types";
 import { DatosReducer } from "./datosReducer";
 export const DatosContext = createContext();
 export const DatosContextProvider =({children}) =>{
-
+ 
 
     const InitialState = {
         docentes:[],
@@ -38,6 +38,8 @@ export const DatosContextProvider =({children}) =>{
                 headers: {'Authorization': 'Bearer '+ access}
               })
             const {data}=await instance.delete(`/docentes/${id}`);
+            setAlertContent(data);
+            setAlert(true);
             listarDocentes();
             borrarData();
         } catch (error) {

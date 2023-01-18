@@ -1,4 +1,4 @@
-import React, { useContext} from 'react'
+import React, { useContext, useState} from 'react'
 import Tables from '../Components/Tables'
 import Logo from '../images/logo.png'
 import ListItem from '../Components/ListItem'
@@ -8,13 +8,13 @@ import {  Box } from '@mui/system'
 import { AuthContext } from '../Context/auth/authContext'
 import { Link } from 'react-router-dom'
 import FormCreate from '../Components/FormCreate'
+import Swit from '../Components/Swit'
+import Alerta from '../Components/Alerta'
 const Home = () => {
   const {logout} = useContext(AuthContext);
-  
   return (
     <div className='w-full flex'>
-      <div className='flex flex-col h-screen w-1/5'>
-        
+      <div className='flex flex-col h-screen sticky top-0 w-1/5  border-r-2  border-dotted'>
         <Box sx={{
           display:'flex',
           alignItems:'center',
@@ -37,6 +37,9 @@ const Home = () => {
           GENERAL
         </Box>
         <ListItem/>
+        <Box sx={{position:'absolute',bottom:'15px',left:'15px'}}>
+          <Swit/>
+        </Box>
       </div>
       <div className='flex w-4/5 '>
           <Grid

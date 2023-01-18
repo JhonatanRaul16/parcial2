@@ -50,13 +50,14 @@ export const AuthContextProvider =({children}) =>{
          const {data} = await axios.post(API_URL + "refreshtoken",{
             "refreshToken":`${refresh}`
          })
-        /*  token.accessToken = data.accessToken;
-         localStorage.setItem('token', JSON.stringify(token)); */
+         token.accessToken = data.accessToken;
+         localStorage.setItem('token', JSON.stringify(token));
          dispatch({
             type: Types.login,
             payload: data.user
           })
       } catch (error) {
+         localStorage.clear()
          dispatch({
             type: Types.logout,
          })
