@@ -7,7 +7,7 @@ import { AppBar, Button, Grid, Paper, Toolbar, Typography } from '@mui/material'
 import {  Box } from '@mui/system'
 import { AuthContext } from '../Context/auth/authContext'
 import { Link } from 'react-router-dom'
-import Form from '../Components/Form'
+import FormCreate from '../Components/FormCreate'
 const Home = () => {
   const {logout} = useContext(AuthContext);
   
@@ -67,7 +67,7 @@ const Home = () => {
               <Grid
                 item
                 xs={12}>
-                  <Form>
+                  <FormCreate>
                     <Button
                     sx={{borderRadius:'10px',
                         backgroundColor:'rgb(238,243,251)',
@@ -76,7 +76,7 @@ const Home = () => {
                         }}
                     title="+ usuario">Nuevo usuario
                     </Button>
-                  </Form> 
+                  </FormCreate> 
               </Grid>
               <Grid
                container
@@ -87,7 +87,7 @@ const Home = () => {
                 item
                 xs={8}
                 >
-                <Paper sx={{p:2,overflowX:'hidden'}} >
+                <Paper sx={{p:2,overflowX:'scroll'}} >
                 <Tables/>
                 </Paper>
               </Grid>

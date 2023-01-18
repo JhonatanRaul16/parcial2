@@ -1,6 +1,5 @@
-import { Box, Button, IconButton, Modal, TextField, Typography } from '@mui/material';
+import { Box, Button, IconButton, Modal, TextField} from '@mui/material';
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router';
 import Title from './Title';
 import { DatosContext } from '../Context/datos/datosContext'
 import ClearIcon from '@mui/icons-material/Clear';
@@ -17,24 +16,35 @@ const style = {
     };
 
 const Form = ({children}) => {
-    const {crearDocente} = useContext(DatosContext);
+    const {actualizarDocentes,edit,borrarData} = useContext(DatosContext);
     const [inputs, setInputs] = useState({
-        nombre:"",
-        apellido:"",
-        telefono:"",
-        dni:"",
+        nombre: "",
+        apellido: "",
+        telefono: "",
+        dni: "",
       });
+     
       const handleChange = e =>{
         setInputs(prev=>({...prev,[e.target.name]: e.target.value}))
       }
+      useEffect(()=>{
+        setInputs({
+          nombre:edit?.nombre || '',
+          apellido:edit?.apellido || '',
+          telefono:edit?.telefono || '',
+          dni:edit?.dni || '',
+        })
+      },[edit])
       const handleSubmit = e =>{
         e.preventDefault();
-        crearDocente(inputs);
+        actualizarDocentes(inputs);
         handleClose();
     }
     const [open,setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+      setOpen(false)
+    };
   return (
     <>
         <span
@@ -80,12 +90,14 @@ const Form = ({children}) => {
                 size="small"
                 onChange={handleChange}
                 variant="outlined"
+                value={edit?.nombre || ""}
                 fullWidth
                 required
                 />
                 <TextField 
                 id="outlined-basic"
                 size="small"
+                value={edit?.apellido || ""}
                 name='apellido'
                 label="Apellido" 
                 onChange={handleChange}
@@ -103,6 +115,7 @@ const Form = ({children}) => {
                 id="outlined-basic"
                 size="small"
                 label="Teléfono"
+                value={edit?.telefono || ""}
                 name='telefono'
                 onChange={handleChange}
                 variant="outlined"
@@ -115,6 +128,7 @@ const Form = ({children}) => {
                 label="Dni"
                 onChange={handleChange}
                 name='dni'
+                value={edit?.dni || ""}
                 variant="outlined"
                 sx={{ width: '25ch' }}
                 required

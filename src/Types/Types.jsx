@@ -3,5 +3,5 @@ export const Types ={
     logout:'logout',
 
     listaDocentes:'listaDocentes',
-    edit:'edit'
+    edit:'edit',
 }

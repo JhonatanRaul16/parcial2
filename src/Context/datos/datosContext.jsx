@@ -75,17 +75,21 @@ export const DatosContextProvider =({children}) =>{
             console.log(error);
         }
     }
-    const actualizarCursos= async(id) =>{
+    const actualizarDocentes= async(id) =>{
         try {
-            const token = localStorage.getItem("token");
+            const token = JSON.parse(localStorage.getItem('token'));
+            const access = token.accessToken;
             const instance = axios.create({
-                baseURL:'http://127.0.0.1:8000',
-                headers: {'Authorization': 'Bearer '+ token}
+                baseURL:'http://localhost:8080/api',
+                headers: {'Authorization': 'Bearer '+ access}
               })
-            const {data}=await instance.update(`/api/cursos/${id}`)
+            const {data}=await instance.update(`/docentes/${id}`)
         } catch (error) {
             console.log(error);
         }
+    }
+    const borrarData = () =>{
+        
     }
     useEffect(()=>{
         listarDocentes()
@@ -97,9 +101,10 @@ export const DatosContextProvider =({children}) =>{
             edit:datos.edit,
             listarDocentes,
             eliminarDocentes,
-            actualizarCursos,
+            actualizarDocentes,
             showDocentes,
-            crearDocente
+            crearDocente,
+            borrarData,
         }} >
             {children}
          </DatosContext.Provider>
